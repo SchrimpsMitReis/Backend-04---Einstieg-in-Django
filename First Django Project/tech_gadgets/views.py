@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.http import HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.utils.text import slugify
 from django.urls import reverse
 from .dummy_data import gadgets 
@@ -10,21 +10,23 @@ import json
 def startPageView(request):
     return HttpResponse("Hey das hat ja doll funktioniert!!")
 
-def singleGadgetsView(request, gadget_id):
+def singleGadgetIntView(request, gadget_id):
     new_slug = slugify(gadgets[gadget_id]['name'])
     new_url = reverse("gadget_slug_url", args=[new_slug])
     return redirect(new_url)
 
-def singleGadgetsSlugView(request, gadget_slug):
-    gadget_match = {'result' : 'nixe'}
-    for gadget in gadgets:
-        if slugify(gadget['name']) == gadget_slug:
-            gadget_match = gadget
+def singleGadgetsSlugView(request, gadget_slug=""):
 
-    return JsonResponse(gadget_match)
+    if request.method == "GET":
+        gadget_match = None
+        for gadget in gadgets:
+            if slugify(gadget['name']) == gadget_slug:
+                gadget_match = gadget
 
-def postView(request):
-
+        if gadget_match:
+            return JsonResponse(gadget_match)
+        raise Http404()
+    
     if request.method == "POST":
         try:
             data = json.loads(request.body)
@@ -32,3 +34,4 @@ def postView(request):
             return JsonResponse({"response": "Das war was"})
         except:
             return JsonResponse({"response": "Das war wohl nix"})
+
