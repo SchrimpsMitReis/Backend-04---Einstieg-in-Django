@@ -10,7 +10,7 @@ import json
 
 
 def startPageView(request):
-    return render(request, 'tech_gadgets/test.html')
+    return render(request, 'tech_gadgets/test.html', {'gadget_list': gadgets})
 
 
 def singleGadgetIntView(request, gadget_id):
