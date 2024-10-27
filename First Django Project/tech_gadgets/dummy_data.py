@@ -50,9 +50,6 @@ gadgets = [
 ]
 
 
-
-
-
 manufacturers = [
   {
     "name": "HomeTech Co.",

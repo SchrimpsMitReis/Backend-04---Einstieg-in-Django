@@ -1,0 +1,17 @@
+li{
+    color: rgb(0, 0, 0);
+    /* margin: 1em; */
+    font-size: 1em;
+    cursor: pointer;
+}
+li:hover{
+    text-decoration: underline;
+}
+.selection{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+a{
+    text-decoration: none;
+}

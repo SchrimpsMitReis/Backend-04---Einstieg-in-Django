@@ -1,34 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <h1>WOW - Das hat geklappt!!</h1>
-    <p>heute ist ein besonderer Tag, denn wir feiern deinen großartigen Erfolg! Du hast es geschafft, eine
-        Herausforderung zu meistern, die Mut, Ausdauer und Hingabe erfordert hat. Es war ein Weg voller Höhen und
-        Tiefen, voller harter Arbeit, aber auch voller Momente des Stolzes und der Freude. Du hast nicht nur deine
-        eigenen Erwartungen übertroffen, sondern auch die unserer Gemeinschaft, die dir auf diesem Weg zugeschaut und
-        mitgefiebert hat.</p>
-    <p>Mit deinem unermüdlichen Engagement und deiner positiven Einstellung hast du bewiesen, dass sich Einsatz und
-        Durchhaltevermögen auszahlen. Du hast uns inspiriert, gezeigt, dass man mit Leidenschaft und Zielstrebigkeit
-        jedes Hindernis überwinden kann. Deine Leistung ist ein Zeichen für all jene, die noch an ihrem eigenen Ziel
-        arbeiten: Es lohnt sich, dranzubleiben und nie aufzugeben.</p>
-    <p>Wir sind stolz auf dich und wünschen dir, dass dieser Erfolg nur der Anfang vieler weiterer Erfolge sein wird.
-        Genieße diesen Moment, denn du hast es dir verdient. Wir gratulieren dir von Herzen und freuen uns auf alles,
-        was noch vor dir liegt. Herzlichen Glückwunsch!</p>
-    <ul>
+{% block title %}
+  Start Page
+{% endblock %}Gadget List{% block content %}
+  <h1>"Willkommen in der Welt der Innovation – Willkommen bei Tech Gadgets"</h1>
+    <p>Erlebe die Zukunft der Technologie! Bei uns findest du nicht einfach nur Gadgets, sondern Visionen, die dein Leben bereichern und inspirieren. Jedes Produkt steht für Innovation, Qualität und grenzenlose Möglichkeiten. Von smarten Alltagshelfern bis hin zu revolutionären Neuheiten – wir bieten dir Technik, die begeistert und überrascht.</p>
+    <p>Bist du bereit, das nächste Level zu erreichen? Dann tauche ein in unsere Welt und entdecke die Magie moderner Technologie. Bei Tech Gadgets beginnt die Zukunft – und du bist mittendrin.</p>
+  <div class="selection">
+    <div>
+      <h2>Gadgets</h2>
+      <ul>
         {% for gadget in gadget_list %}
-        <li>
-                {{ gadget.name}}
-        </li>
+          <a href="./gadget/{{ forloop.counter }}"><li>{{ gadget.name }}</li></a>
         {% endfor %}
-
-    </ul>
-</body>
-
-</html>
+      </ul>
+    </div>
+    <div>
+      <h2>Manufacturers</h2>
+      <ul>
+        {% for manuf in manuf_list %}
+          <a href="./manuf/{{ forloop.counter }}"><li>{{ manuf.name }}</li></a>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}
